@@ -50,6 +50,10 @@ hbs.registerHelper('block', function(name) {
 	return val;
 });
 
+hbs.registerHelper('year', function() {
+	return new Date().getFullYear();
+});
+
 // routing
 app.get('/', routes.index);
 app.get('/users', user.list);
