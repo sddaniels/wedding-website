@@ -9,6 +9,7 @@ var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var hbs = require('hbs');
+var lessMiddleware = require('less-middleware');
 
 var app = express();
 
@@ -23,6 +24,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
+app.use(lessMiddleware({ src: path.join(__dirname, 'public'), compress: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
