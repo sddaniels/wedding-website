@@ -1,6 +1,46 @@
-body {
+@purple: #906064;
+@pink: #D46D64;
+@orange: #EC7E5B;
 
-	h1 {
-		color: #444;
+@honeyscript: 'honey_scriptsemibold', Arial, sans-serif;
+@hefty: 'heftyregular', Arial, sans-serif;
+
+h1 {
+	font-family: @honeyscript;
+	
+	a {
+		color: @purple;
+		
+		&:hover {
+			color: @purple;
+		}
+	}
+}
+
+header {
+
+	.inline-list li {
+		font-family: @hefty;
+		height: 80px;
+		line-height: 80px;
+		margin-left: 1.5em;
+		
+		a {
+			color: black;
+			
+			&:hover {
+				color: lighten(black, 50%);
+			}
+		}
+		
+		.button {
+			margin-bottom: 0;
+			display: inline-block;
+			color: white;
+			
+			&:hover {
+				color: white;
+			}
+		}
 	}
 }
