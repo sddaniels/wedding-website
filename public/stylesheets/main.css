@@ -1,6 +1,12 @@
 button:hover,.button:hover,button:focus,.button:focus{background-color:#a77c7f}
-h1{font-family:'honey_scriptsemibold',Arial,sans-serif;font-size:3.4em}h1 a{color:#906064}h1 a:hover{color:#906064}
+h1,h3{font-family:'honey_scriptsemibold',Arial,sans-serif}
+h1{font-size:3.3em}h1 a{color:#906064}h1 a:hover{color:#906064}
 h1 span{font-family:'heftyregular',Arial,sans-serif;font-size:0.3em;color:#d46d64}
-header .inline-list li{font-family:'heftyregular',Arial,sans-serif;height:80px;line-height:80px;margin-left:1.5em}header .inline-list li a{color:black}header .inline-list li a:hover{color:#4d4d4d}
+h2{font-family:'heftyregular',Arial,sans-serif}
+header .inline-list li{font-family:'heftyregular',Arial,sans-serif;margin-left:1.5em}header .inline-list li a{color:black}header .inline-list li a:hover{color:#666}
 header .inline-list li .button{margin-bottom:0;display:inline-block;color:white}header .inline-list li .button:hover{color:white}
-@media only screen and (min-width:992px){h1{line-height:0.45;padding-top:15px}h1 span{display:inline-block;padding-left:24px}}@media only screen and (min-width:768px) and (max-width:991px){h1{line-height:0.9;padding-top:15px}}
+#home-banner{background-color:#ec7e5b;color:white}#home-banner h2{color:white}
+#home-info-boxes .columns{text-align:center}
+#home-about{background-color:#dfbf8c;color:#b47c30}#home-about h3{color:#a8742d}
+#home-questions{text-align:center}#home-questions h3{font-family:'heftyregular',Arial,sans-serif;font-size:1.5em;color:#906064;margin-top:2em}
+@media only screen and (min-width:992px){h1{line-height:0.45;padding-top:15px}h1 span{display:inline-block;padding-left:22px} h3{font-size:2.5em} header .inline-list{margin-bottom:0}header .inline-list li{height:100px;line-height:100px}}@media only screen and (min-width:768px) and (max-width:991px){h1{line-height:0.5;padding-top:15px;font-size:2.5em}h1 span{display:inline-block;padding-left:25px;font-size:0.25em} h3{font-size:1.9em} header .inline-list{margin-bottom:0}header .inline-list li{height:80px;line-height:80px;font-size:0.8em}}@media only screen and (max-width:767px){h1{margin-bottom:0;text-align:center} h3{font-size:2.6em} header .inline-list{float:none !important}header .inline-list li{float:none;text-align:center;height:60px;line-height:60px}}

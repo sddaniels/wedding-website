@@ -1,6 +1,8 @@
 @purple: #906064;
 @pink: #D46D64;
 @orange: #EC7E5B;
+@sand: #DFBF8C;
+@sandWriting: #B47C30;
 
 @honeyscript: 'honey_scriptsemibold', Arial, sans-serif;
 @hefty: 'heftyregular', Arial, sans-serif;
@@ -12,10 +14,12 @@ button, .button {
 	}
 }
 
+h1, h3 {
+	font-family: @honeyscript;
+}
 
 h1 {
-	font-family: @honeyscript;
-	font-size: 3.4em;
+	font-size: 3.3em;
 	
 	a {
 		color: @purple;
@@ -32,19 +36,21 @@ h1 {
 	}
 }
 
+h2 {
+	font-family: @hefty;
+}
+
 header {
 
 	.inline-list li {
 		font-family: @hefty;
-		height: 80px;
-		line-height: 80px;
 		margin-left: 1.5em;
 		
 		a {
 			color: black;
 			
 			&:hover {
-				color: lighten(black, 30%);
+				color: lighten(black, 40%);
 			}
 		}
 		
@@ -60,6 +66,42 @@ header {
 	}
 }
 
+#home-banner {
+	background-color: @orange;
+	color: white;
+	
+	h2 {
+		color: white;
+	}
+}
+
+#home-info-boxes {
+
+	.columns {
+		text-align: center;
+	}
+}
+
+#home-about {
+	background-color: @sand;
+	color: @sandWriting;
+	
+	h3 {
+		color: darken(@sandWriting, 3%);
+	}
+}
+
+#home-questions {
+	text-align: center;
+	
+	h3 {
+		font-family: @hefty;
+		font-size: 1.5em;
+		color: @purple;
+		margin-top: 2em;
+	}
+}
+
 @media only screen and (min-width: 992px) {
 	h1 {
 		line-height: 0.45;
@@ -67,14 +109,76 @@ header {
 		
 		span {
 			display: inline-block;
-			padding-left: 24px;
+			padding-left: 22px;
+		}
+	}
+	
+	h3 {
+		font-size: 2.5em;
+	}
+	
+	header {
+		.inline-list {
+			margin-bottom: 0;
+			
+			li {
+				height: 100px;
+				line-height: 100px;			
+			}			
 		}
 	}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	h1 {
-		line-height: 0.9;
+		line-height: 0.5;
 		padding-top: 15px;
+		font-size: 2.5em;
+		
+		span {
+			display: inline-block;
+			padding-left: 25px;
+			font-size: 0.25em;
+		}
 	}
+	
+	h3 {
+		font-size: 1.9em;
+	}
+	
+	header {
+		.inline-list {
+			margin-bottom: 0;
+			
+			li {
+				height: 80px;
+				line-height: 80px;			
+				font-size: 0.8em;
+			}
+		}
+	}	
+}
+
+@media only screen and (max-width: 767px) {
+	h1 {
+		margin-bottom: 0;
+		text-align: center;
+	}
+	
+	h3 {
+		font-size: 2.6em;
+	}
+	
+	header {
+		.inline-list {
+			float: none !important;
+		
+			li {
+				float: none;
+				text-align: center;
+				height: 60px;
+				line-height: 60px;					
+			}
+		}
+	}	
 }
