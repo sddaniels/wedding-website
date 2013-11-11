@@ -1,3 +1,6 @@
-h1{font-family:'honey_scriptsemibold',Arial,sans-serif}h1 a{color:#906064}h1 a:hover{color:#906064}
-header .inline-list li{font-family:'heftyregular',Arial,sans-serif;height:80px;line-height:80px;margin-left:1.5em}header .inline-list li a{color:black}header .inline-list li a:hover{color:#808080}
+button:hover,.button:hover,button:focus,.button:focus{background-color:#a77c7f}
+h1{font-family:'honey_scriptsemibold',Arial,sans-serif;font-size:3.4em}h1 a{color:#906064}h1 a:hover{color:#906064}
+h1 span{font-family:'heftyregular',Arial,sans-serif;font-size:0.3em;color:#d46d64}
+header .inline-list li{font-family:'heftyregular',Arial,sans-serif;height:80px;line-height:80px;margin-left:1.5em}header .inline-list li a{color:black}header .inline-list li a:hover{color:#4d4d4d}
 header .inline-list li .button{margin-bottom:0;display:inline-block;color:white}header .inline-list li .button:hover{color:white}
+@media only screen and (min-width:992px){h1{line-height:0.45;padding-top:15px}h1 span{display:inline-block;padding-left:24px}}@media only screen and (min-width:768px) and (max-width:991px){h1{line-height:0.9;padding-top:15px}}

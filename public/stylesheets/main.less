@@ -5,8 +5,17 @@
 @honeyscript: 'honey_scriptsemibold', Arial, sans-serif;
 @hefty: 'heftyregular', Arial, sans-serif;
 
+button, .button {
+
+	&:hover, &:focus {
+		background-color: lighten(@purple, 10%);
+	}
+}
+
+
 h1 {
 	font-family: @honeyscript;
+	font-size: 3.4em;
 	
 	a {
 		color: @purple;
@@ -14,6 +23,12 @@ h1 {
 		&:hover {
 			color: @purple;
 		}
+	}
+	
+	span {
+		font-family: @hefty;
+		font-size: 0.3em;
+		color: @pink;
 	}
 }
 
@@ -29,7 +44,7 @@ header {
 			color: black;
 			
 			&:hover {
-				color: lighten(black, 50%);
+				color: lighten(black, 30%);
 			}
 		}
 		
@@ -42,5 +57,24 @@ header {
 				color: white;
 			}
 		}
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	h1 {
+		line-height: 0.45;
+		padding-top: 15px;
+		
+		span {
+			display: inline-block;
+			padding-left: 24px;
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+	h1 {
+		line-height: 0.9;
+		padding-top: 15px;
 	}
 }
