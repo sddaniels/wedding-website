@@ -39,19 +39,39 @@
 		
 			<ul class="inline-list right">
 				<li>
-					<a href="/florida">Florida</a>
+					{{#ifCond currentPage 'florida'}}
+						<a class="selected" href="/florida">Florida</a>
+					{{else}}
+						<a href="/florida">Florida</a>
+					{{/ifCond}}
 				</li>
 				<li>
-					<a href="/iowa">Iowa</a>
+					{{#ifCond currentPage 'iowa'}}
+						<a class="selected" href="/iowa">Iowa</a>
+					{{else}}
+						<a href="/iowa">Iowa</a>
+					{{/ifCond}}
 				</li>
 				<li>
-					<a href="/registry">Registry</a>
+					{{#ifCond currentPage 'registry'}}
+						<a class="selected" href="/registry">Registry</a>
+					{{else}}
+						<a href="/registry">Registry</a>
+					{{/ifCond}}
 				</li>
 				<li>
-					<a href="/photos">Photos</a>
+					{{#ifCond currentPage 'photos'}}
+						<a class="selected" href="/photos">Photos</a>
+					{{else}}
+						<a href="/photos">Photos</a>
+					{{/ifCond}}
 				</li>
 				<li>
-					<a class="button small round" href="/rsvp">RSVP</a>
+					{{#ifCond currentPage 'rsvp'}}
+						<a class="button small round selected" href="/rsvp">RSVP</a>
+					{{else}}
+						<a class="button small round" href="/rsvp">RSVP</a>
+					{{/ifCond}}
 				</li>
 			</ul>
 		

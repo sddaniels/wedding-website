@@ -4,6 +4,7 @@ h1{font-size:3.3em}h1 a{color:#906064}h1 a:hover{color:#906064}
 h1 span{font-family:'heftyregular',Arial,sans-serif;font-size:0.3em;color:#d46d64}
 h2{font-family:'heftyregular',Arial,sans-serif}
 header .inline-list li{font-family:'heftyregular',Arial,sans-serif;margin-left:1.5em}header .inline-list li a{color:black}header .inline-list li a:hover{color:#666}
+header .inline-list li a.selected{color:#ec7e5b}
 header .inline-list li .button{margin-bottom:0;display:inline-block;color:white}header .inline-list li .button:hover{color:white}
 #home-banner{background-color:#ec7e5b;color:white}#home-banner h2{color:white}
 #home-info-boxes .columns{text-align:center}

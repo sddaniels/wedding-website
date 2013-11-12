@@ -56,8 +56,21 @@ hbs.registerHelper('year', function() {
 	return new Date().getFullYear();
 });
 
+hbs.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 // routing
 app.get('/', routes.index);
+app.get('/florida', routes.florida);
+app.get('/iowa', routes.iowa);
+app.get('/registry', routes.registry);
+app.get('/photos', routes.photos);
+app.get('/rsvp', routes.rsvp);
+
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
