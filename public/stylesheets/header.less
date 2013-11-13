@@ -1,0 +1,71 @@
+header {
+
+	.inline-list li {
+		font-family: @hefty;
+		margin-left: 1.5em;
+		
+		a {
+			color: black;
+			
+			&:hover {
+				color: lighten(black, 40%);
+			}
+			
+			&.selected {
+				color: @orange;
+			}
+		}
+		
+		.button {
+			margin-bottom: 0;
+			display: inline-block;
+			color: white;
+			
+			&:hover {
+				color: white;
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 992px) {
+	header {
+		.inline-list {
+			margin-bottom: 0;
+			
+			li {
+				height: 100px;
+				line-height: 100px;			
+			}			
+		}
+	}
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {	
+	header {
+		.inline-list {
+			margin-bottom: 0;
+			
+			li {
+				height: 80px;
+				line-height: 80px;			
+				font-size: 0.8em;
+			}
+		}
+	}	
+}
+
+@media only screen and (max-width: 767px) {
+	header {
+		.inline-list {
+			float: none !important;
+		
+			li {
+				float: none;
+				text-align: center;
+				height: 60px;
+				line-height: 60px;					
+			}
+		}
+	}	
+}

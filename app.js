@@ -24,7 +24,7 @@ app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(app.router);
-app.use(lessMiddleware({ src: path.join(__dirname, 'public'), compress: true }));
+app.use(lessMiddleware({ src: path.join(__dirname, 'public'), yuicompress: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
