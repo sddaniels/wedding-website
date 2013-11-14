@@ -24,6 +24,17 @@ header {
 			&:hover {
 				color: white;
 			}
+			
+			&.selected {
+				color: darken(@purple, 20%);
+				-webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+				box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2) inset;
+				text-shadow: 0 1px 0 lighten(@purple, 20%);
+				
+				&:hover {
+					color: darken(@purple, 10%);
+				}
+			}
 		}
 	}
 }
