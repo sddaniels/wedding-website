@@ -36,11 +36,20 @@
 }
 
 #home-about {
-	background-color: @purple;
-	color: white;
+	background-color: @lightGray;
+	color: black;
+	
+	img {
+		padding-top: 1em;
+	}
 	
 	h3 {
-		color: white;
+		color: darken(@lightGray, 40%);
+		margin-top: 0.5em;
+	}
+	
+	p {
+		margin-bottom: 2em;
 	}
 }
 
@@ -100,5 +109,10 @@
 		h3 {
 			font-size: 1em;
 		}
-	}	
+	}
+	#home-about {
+		.large-4 {
+			text-align: center;
+		}
+	}
 }
