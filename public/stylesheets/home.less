@@ -1,14 +1,26 @@
 #home-banner {
+	background-color: lighten(@sand, 10%);
+	text-align: center;
+	
+	img {
+		max-width: 100%;
+		padding-bottom: 10px;
+	}
+	
+}
+
+#home-date {
 	background-color: @orange;
-	color: white;
+	text-align: center;
 	
 	h2 {
 		color: white;
+		margin: 1em 0 1em 0;
 	}
 	
 	.fa-circle {
 		vertical-align: middle;
-	}
+	}	
 }
 
 #home-info-boxes {
@@ -24,11 +36,11 @@
 }
 
 #home-about {
-	background-color: @sand;
-	color: @sandWriting;
+	background-color: @purple;
+	color: white;
 	
 	h3 {
-		color: darken(@sandWriting, 3%);
+		color: white;
 	}
 }
 
@@ -43,7 +55,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-	#home-banner {
+	#home-date {
 		h2 {
 			font-size: 1.2em;
 		}
@@ -59,7 +71,7 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {	
-	#home-banner {
+	#home-date {
 		h2 {
 			font-size: .9em;
 		}
@@ -75,8 +87,7 @@
 }
 
 @media only screen and (max-width: 767px) {
-	#home-banner {
-	
+	#home-date {
 		h2 {
 			font-size: 1.2em;
 		}
