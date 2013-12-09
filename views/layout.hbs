@@ -17,72 +17,93 @@
 
 <body>
 
-	<header class="row">
+	<header>
+		<div class="row">
 	
-		<div class="large-3 columns">
+			<div class="large-3 columns">
 		
-			<h1>
-				<a href="/"><img src="images/logo.png" alt="Shea + Lindsey's Wedding" /></a>
-			</h1>
+				<h1>
+					<a href="/"><img src="images/logo.png" alt="Shea + Lindsey's Wedding" /></a>
+				</h1>
 		
-		</div>
+			</div>
 		
-		<div class="large-9 columns">
+			<div class="large-9 columns">
 		
-			{{! todo - replace this with a macro or some other sort of thing for dynamic navigation }}
+				{{! todo - replace this with a macro or some other sort of thing for dynamic navigation }}
 		
-			<ul class="inline-list right">
-				<li>
-					{{#ifCond currentPage 'florida'}}
-						<a class="selected" href="/florida">Florida</a>
-					{{else}}
-						<a href="/florida">Florida</a>
-					{{/ifCond}}
-				</li>
-				<li>
-					{{#ifCond currentPage 'iowa'}}
-						<a class="selected" href="/iowa">Iowa</a>
-					{{else}}
-						<a href="/iowa">Iowa</a>
-					{{/ifCond}}
-				</li>
-				<li>
-					{{#ifCond currentPage 'registry'}}
-						<a class="selected" href="/registry">Registry</a>
-					{{else}}
-						<a href="/registry">Registry</a>
-					{{/ifCond}}
-				</li>
-				<li>
-					{{#ifCond currentPage 'photos'}}
-						<a class="selected" href="/photos">Photos</a>
-					{{else}}
-						<a href="/photos">Photos</a>
-					{{/ifCond}}
-				</li>
-				<li>
-					{{#ifCond currentPage 'rsvp'}}
-						<a class="button small round selected" href="/rsvp">RSVP</a>
-					{{else}}
-						<a class="button small round" href="/rsvp">RSVP</a>
-					{{/ifCond}}
-				</li>
-			</ul>
+				<ul class="inline-list right">
+					<li>
+						{{#ifCond currentPage 'florida'}}
+							<a class="selected" href="/florida">Florida</a>
+						{{else}}
+							<a href="/florida">Florida</a>
+						{{/ifCond}}
+					</li>
+					<li>
+						{{#ifCond currentPage 'iowa'}}
+							<a class="selected" href="/iowa">Iowa</a>
+						{{else}}
+							<a href="/iowa">Iowa</a>
+						{{/ifCond}}
+					</li>
+					<li>
+						{{#ifCond currentPage 'registry'}}
+							<a class="selected" href="/registry">Registry</a>
+						{{else}}
+							<a href="/registry">Registry</a>
+						{{/ifCond}}
+					</li>
+					<li>
+						{{#ifCond currentPage 'photos'}}
+							<a class="selected" href="/photos">Photos</a>
+						{{else}}
+							<a href="/photos">Photos</a>
+						{{/ifCond}}
+					</li>
+					<li>
+						{{#ifCond currentPage 'rsvp'}}
+							<a class="button small round selected" href="/rsvp">RSVP</a>
+						{{else}}
+							<a class="button small round" href="/rsvp">RSVP</a>
+						{{/ifCond}}
+					</li>
+				</ul>
 		
-		</div>
+			</div>
 	
+		</div>
 	</header>
 
-	{{{body}}}
+	<div class="template-area">
+		{{{body}}}
+	</div>
 	
-	<footer class="row">
+	<footer>
+		<div class="row">
 	
-		<div class="large-12 columns">
+			<div class="large-9 small-9 columns">
 		
-			&copy; {{year}} Shea Daniels
+				<h3>QUESTIONS?</h3>
 		
+				<p>
+					Email us, call us, use Facebook, or write us a letter. We'll answer your 
+					question if we can.
+				</p>		
+		
+				<p id="copyright">
+					&copy; {{year}} Shea Daniels
+				</p>
+		
+			</div>
+			
+			<div class="large-3 small-3 columns">
+				<div class="tiki">
+					<img src="images/tiki.png" alt="" />
+				</div>
+			</div>			
+			
 		</div>
-	
 	</footer>
 
 	<script>

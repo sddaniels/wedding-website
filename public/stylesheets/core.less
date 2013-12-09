@@ -1,3 +1,7 @@
+html {
+	background-color: @darkGray;
+}
+
 .banner {
 	background-color: @orange;
 	color: white;
@@ -24,6 +28,43 @@ h2 {
 	font-family: @hefty;
 }
 
+.template-area {
+	background-color: white;
+}
+
+.date-row {
+	h3 {
+		font-family: @hefty;
+		text-align: center;
+		margin: 1.5em 0 1.5em 0;
+	}
+}
+
+footer {
+	text-align: center;
+	background-color: lighten(black, 10%);
+	color: @lightGray;
+	
+	.large-3 {
+		text-align: right;
+	}
+	
+	.tiki {
+		max-width: 100px;
+		float: right;
+	}
+	
+	h3 {
+		font-family: @hefty;
+		color: @pink;
+	}
+	
+	#copyright {
+		font-family: @hefty;
+		color: lighten(black, 30%);
+	}
+}
+
 @media only screen and (min-width: 992px) {
 	h1 {
 		line-height: 0.45;
@@ -38,6 +79,21 @@ h2 {
 	h3 {
 		font-size: 2.5em;
 	}
+	.date-row {
+		h3 {
+			color: @purple;
+			font-size: 1.2em;
+		}
+		.fa-circle {
+			font-size: .7em;
+		}
+	}	
+	footer {
+		h3 {
+			margin-top: 3em;		
+			font-size: 1.5em;
+		}
+	}	
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -55,7 +111,24 @@ h2 {
 	
 	h3 {
 		font-size: 1.9em;
+	}
+	.date-row {
+		h3 {
+			font-size: .9em;
+		}
+		.fa-circle {
+			font-size: .3em;
+		}		
 	}	
+	footer {
+		h3 {
+			margin-top: 3.5em;
+			font-size: 1.2em;
+		}
+	}
+	#copyright {
+		font-size: 0.8em;
+	}
 }
 
 @media only screen and (max-width: 767px) {
@@ -66,5 +139,23 @@ h2 {
 	
 	h3 {
 		font-size: 2.6em;
+	}
+	.date-row {
+		h3 {
+			font-size: 1.2em;
+		}
+		
+		.fa-circle {
+			display: none;
+		}
 	}	
+	footer {
+		h3 {
+			margin-top: 4em;
+			font-size: 1em;
+		}
+	}
+	#copyright {
+		font-size: 0.8em;
+	}
 }
