@@ -5,11 +5,12 @@
 
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
+var adminRoutes = require('./routes/admin');
 var http = require('http');
 var path = require('path');
 var hbs = require('hbs');
 var lessMiddleware = require('less-middleware');
+var mongoose = require('mongoose');
 
 var app = express();
 
@@ -71,7 +72,10 @@ app.get('/registry', routes.registry);
 app.get('/photos', routes.photos);
 app.get('/rsvp', routes.rsvp);
 
-app.get('/users', user.list);
+app.get('/admin', adminRoutes.index);
+app.get('/admin/dashboard', adminRoutes.dashboard);
+app.get('/admin/rsvp', adminRoutes.rsvp);
+app.get('/admin/poll', adminRoutes.poll);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
