@@ -1,6 +1,6 @@
 <!doctype html>
-<!--[if IE 8]> <html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<!--[if IE 8]> <html class="admin-login no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="admin-login no-js" lang="en" > <!--<![endif]-->
 
 <head>
     <meta charset="utf-8">
@@ -9,34 +9,48 @@
 
     <title>{{title}}</title>
 
-    <link rel="Stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link rel="Stylesheet" type="text/css" href="/stylesheets/admin.css" />
     
     <script src="/scripts/vendor/custom.modernizr.js"></script>
 </head>
 
 <body>
 
-	{{#if message}}
-		<p>
-			{{message}}
-		</p>
-	{{/if}}	
+	<div id="login-logo">
+		<h1>
+			<a href="/admin"><img src="/images/logo.png" alt="Shea + Lindsey's Wedding" /></a>
+		</h1>
+	</div>
 
-	<form action="/admin" method="post">
-		
-		<div>
-			<label for="username">Username</label>
-			<input id="username" type="text" name="username" value="{{username}}"/>
-		</div>
-		<div>
-			<label for="password">Password</label>
-			<input id="password" type="password" name="password"/>
-		</div>
-		<div>
-			<button type="submit">Log In</button>
-		</div>		
+
+	<div id="login-panel" class="row panel radius">
 	
-	</form>
+		{{#if message}}
+			<div data-alert class="alert-box alert">
+			  
+			  {{message}}
+			  
+			  <a href="#" class="close">&times;</a>
+			</div>
+		{{/if}}	
+
+		<form action="/admin" method="post">
+		
+			<div>
+				<label for="username">Username</label>
+				<input id="username" type="text" name="username" value="{{username}}"/>
+			</div>
+			<div>
+				<label for="password">Password</label>
+				<input id="password" type="password" name="password"/>
+			</div>
+			<div>
+				<button type="submit">Log In</button>
+			</div>		
+	
+		</form>
+		
+	</div>
 
 	<script>
 		document.write('<script src=' +

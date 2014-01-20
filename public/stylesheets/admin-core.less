@@ -1,0 +1,46 @@
+html.admin-login {
+	background-color: white;
+}
+
+.admin-banner {
+	background-color: @purple;
+}
+
+#login-logo h1 {
+	max-width: 400px;
+	margin: 20px auto 0 auto;
+	text-align: center;
+	
+	img {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+#login-panel {
+	margin-top: 20px;
+
+	button {
+		width: 100%;
+		margin-bottom: 0;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	#login-logo h1 {
+		margin-top: 40px;
+	}
+
+	#login-panel {
+		width: 400px;
+		margin-top: 40px;
+		
+		label {
+			padding-bottom: 0.5em;
+		}
+		
+		input {
+			font-size: 24px;
+		}
+	}
+}
