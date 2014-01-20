@@ -8,10 +8,11 @@ var routes = require('./routes');
 var adminRoutes = require('./routes/admin');
 var http = require('http');
 var path = require('path');
-var hbs = require('hbs');
 var lessMiddleware = require('less-middleware');
 var mongoose = require('mongoose');
+var hbs = require('hbs');
 
+require('./helpers/hbs-helpers')(hbs);
 var app = express();
 
 // all environments
@@ -32,37 +33,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-// handlebars helpers
-var blocks = {};
-
-hbs.registerHelper('extend', function(name, context) {
-	var block = blocks[name];
-	if (!block) {
-		block = blocks[name] = [];
-	}
-	
-	block.push(context.fn(this));
-});
-
-hbs.registerHelper('block', function(name) {
-	var val = (blocks[name] || []).join('\n');
-	
-	// clear the block
-	blocks[name] = [];
-	return val;
-});
-
-hbs.registerHelper('year', function() {
-	return new Date().getFullYear();
-});
-
-hbs.registerHelper('ifCond', function(v1, v2, options) {
-  if(v1 === v2) {
-    return options.fn(this);
-  }
-  return options.inverse(this);
-});
 
 // routing
 app.get('/', routes.index);
