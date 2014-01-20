@@ -1,12 +1,92 @@
-<div class="row">
-	<div class="large-12 columns">
+<!doctype html>
+<!--[if IE 8]> <html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+
+    <title>{{title}}</title>
+
+    <link rel="Stylesheet" type="text/css" href="/stylesheets/main.css" />
+    
+    <script src="/scripts/vendor/custom.modernizr.js"></script>
+</head>
+
+<body>
+
+	{{#if message}}
+		<p>
+			{{message}}
+		</p>
+	{{/if}}	
+
+	<form action="/admin" method="post">
+		
+		<div>
+			<label for="username">Username</label>
+			<input id="username" type="text" name="username" value="{{username}}"/>
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password"/>
+		</div>
+		<div>
+			<button type="submit">Log In</button>
+		</div>		
 	
-		<p>TODO</p>
-	
-	</div>
-</div>
+	</form>
 
+	<script>
+		document.write('<script src=' +
+		('__proto__' in {} ? '/scripts/vendor/zepto' : '/scripts/vendor/jquery') +
+		'.js><\/script>')
+	</script>
 
-{{#extend "scripts"}}
+	<script src="/scripts/foundation.min.js"></script>
+	<!--
 
-{{/extend}}
+	<script src="scripts/foundation/foundation.js"></script>
+
+	<script src="scripts/foundation/foundation.interchange.js"></script>
+
+	<script src="scripts/foundation/foundation.abide.js"></script>
+
+	<script src="scripts/foundation/foundation.dropdown.js"></script>
+
+	<script src="scripts/foundation/foundation.placeholder.js"></script>
+
+	<script src="scripts/foundation/foundation.forms.js"></script>
+
+	<script src="scripts/foundation/foundation.alerts.js"></script>
+
+	<script src="scripts/foundation/foundation.magellan.js"></script>
+
+	<script src="scripts/foundation/foundation.reveal.js"></script>
+
+	<script src="scripts/foundation/foundation.tooltips.js"></script>
+
+	<script src="scripts/foundation/foundation.clearing.js"></script>
+
+	<script src="scripts/foundation/foundation.cookie.js"></script>
+
+	<script src="scripts/foundation/foundation.joyride.js"></script>
+
+	<script src="scripts/foundation/foundation.orbit.js"></script>
+
+	<script src="scripts/foundation/foundation.section.js"></script>
+
+	<script src="scripts/foundation/foundation.topbar.js"></script>
+
+	-->
+
+	<script>
+	$(document).foundation();
+	</script>
+
+    {{{block "scripts"}}}
+
+</body>
+</html>
+  
