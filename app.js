@@ -10,8 +10,8 @@ var http = require('http');
 var path = require('path');
 var lessMiddleware = require('less-middleware');
 var passport = require('passport');
+var db = require('./config/db-schema');
 var auth = require('./config/passport-config');
-var mongoose = require('mongoose');
 var hbs = require('hbs');
 
 require('./config/hbs-helpers')(hbs);
