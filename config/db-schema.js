@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 exports.mongoose = mongoose;
 
+// connectify up in here!
 var uriString =
 	process.env.MONGOLAB_URI ||
 	process.env.MONGOHQ_URL ||
@@ -14,3 +15,20 @@ mongoose.connect(uriString, null, function(err, res) {
 		console.log('Successfully connected to: ' + uriString);
 	}
 });
+
+// schema
+/////////////////////////////////////
+
+var Schema = mongoose.Schema;
+
+// poll results
+
+var pollSchema = new Schema({
+	florida:  Boolean,
+	iowa:     Boolean,
+	notGoing: Boolean,
+	date:     Date
+});
+
+var pollModel = mongoose.model('Poll', pollSchema);
+exports.pollModel = pollModel;

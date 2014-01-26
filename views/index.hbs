@@ -66,14 +66,36 @@
 	
 			<h3>Take the Poll</h3>
 		
-			<p>
-				Please take a minute and help us get a handle on who will be able to come. 
-				Formal invitations will be sent out later. This is not the RSVP!
-			</p>
+			{{#if pollDone}}
+				<div data-alert class="alert-box radius">
+					Thanks for taking the poll!
+				</div>
+			{{else}}
+				<p>
+					Please take a minute and help us get a handle on who will be able to come. 
+					This is not the RSVP!
+				</p>
 		
-			<p>
-				TODO
-			</p>	
+				<form method="post" action="/poll">
+					<label for="poll-florida">
+						<input type="radio" id="poll-florida" name="poll" value="florida" />
+						&nbsp;
+						We think we can make it to Florida.
+					</label>
+					<label for="poll-iowa">
+						<input type="radio" id="poll-iowa" name="poll" value="iowa" />
+						&nbsp;
+						We'll see you in Iowa instead!
+					</label>
+					<label for="poll-notgoing">
+						<input type="radio" id="poll-notgoing" name="poll" value="notgoing" />
+						&nbsp;
+						We can't make it at all.
+					</label>
+				
+					<button type="submit" class="button small round">Submit Poll</button>
+				</form>
+			{{/if}}
 	
 		</div>
 	</div>

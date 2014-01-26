@@ -40,6 +40,7 @@ if ('development' == app.get('env')) {
 
 // routing
 app.get('/', routes.index);
+app.post('/poll', routes.pollPost);
 app.get('/florida', routes.florida);
 app.get('/iowa', routes.iowa);
 app.get('/registry', routes.registry);

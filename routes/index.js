@@ -1,11 +1,19 @@
-exports.index = function(req, res){
+exports.index = function(req, res) {
 
 	res.render('index', { 
-		title: 'Shea & Lindsey\'s Wedding' 
+		title: 'Shea & Lindsey\'s Wedding',
+		pollDone: req.query.poll
 	});
 };
 
-exports.florida = function(req, res){
+exports.pollPost = function(req, res) {
+
+	// todo: save poll results here
+
+	res.redirect('/?poll=done');
+};
+
+exports.florida = function(req, res) {
 
 	res.render('florida', { 
 		title: 'Florida - Shea & Lindsey\'s Wedding',
@@ -13,7 +21,7 @@ exports.florida = function(req, res){
     });
 };
 
-exports.iowa = function(req, res){
+exports.iowa = function(req, res) {
 
 	res.render('iowa', { 
 		title: 'Iowa - Shea & Lindsey\'s Wedding',
@@ -21,7 +29,7 @@ exports.iowa = function(req, res){
     });
 };
 
-exports.registry = function(req, res){
+exports.registry = function(req, res) {
 
 	res.render('registry', { 
 		title: 'Registry - Shea & Lindsey\'s Wedding',
@@ -29,7 +37,7 @@ exports.registry = function(req, res){
     });
 };
 
-exports.photos = function(req, res){
+exports.photos = function(req, res) {
 
 	res.render('photos', { 
 		title: 'Photos - Shea & Lindsey\'s Wedding',
@@ -37,7 +45,7 @@ exports.photos = function(req, res){
     });
 };
 
-exports.rsvp = function(req, res){
+exports.rsvp = function(req, res) {
 
 	res.render('rsvp', { 
 		title: 'RSVP - Shea & Lindsey\'s Wedding',
