@@ -2,15 +2,30 @@ exports.index = function(req, res) {
 
 	res.render('index', { 
 		title: 'Shea & Lindsey\'s Wedding',
+		pollError: req.query.error,
 		pollDone: req.query.poll
 	});
 };
 
 exports.pollPost = function(req, res) {
 
-	// todo: save poll results here
-
-	res.redirect('/?poll=done');
+	var db = require('../config/db-schema');
+	
+	var pollResponse = new db.Poll({
+		florida:  userIsGoingTo('florida', req),
+		iowa:     userIsGoingTo('iowa', req),
+		notGoing: userIsGoingTo('notgoing', req),	
+		date:     new Date()
+	});
+	
+	pollResponse.save(function (err) { 
+		if (err) {
+			console.log ('Error saving poll.');
+			res.redirect('/?error=verymuchyes');
+		} else {
+			res.redirect('/?poll=done');
+		}
+	});
 };
 
 exports.florida = function(req, res) {
@@ -52,3 +67,8 @@ exports.rsvp = function(req, res) {
         currentPage: 'rsvp'
     });
 };
+
+function userIsGoingTo(destination, req) {
+
+	return req.body.poll === destination;
+}

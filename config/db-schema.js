@@ -30,5 +30,5 @@ var pollSchema = new Schema({
 	date:     Date
 });
 
-var pollModel = mongoose.model('Poll', pollSchema);
-exports.pollModel = pollModel;
+var PollModel = mongoose.model('Poll', pollSchema);
+exports.Poll = PollModel;

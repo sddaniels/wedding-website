@@ -66,6 +66,12 @@
 	
 			<h3>Take the Poll</h3>
 		
+			{{#if pollError}}
+				<div data-alert class="alert-box alert radius">
+					There was a problem saving the poll. Please try again!
+				</div>
+			{{/if}}
+		
 			{{#if pollDone}}
 				<div data-alert class="alert-box radius">
 					Thanks for taking the poll!
