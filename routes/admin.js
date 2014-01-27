@@ -69,10 +69,16 @@ exports.rsvp = function(req, res) {
 
 exports.poll = function(req, res) {
 
-	res.render('admin-poll', { 
-		title: 'Poll - Admin - Shea & Lindsey\'s Wedding',
-		layout: 'admin-layout',
-		currentPage: 'poll'
+	pollRepo.getAll(function(err, responses) {
+		
+		if (err) renderErrorFor(err, res);
+		
+		res.render('admin-poll', { 
+			title: 'Poll - Admin - Shea & Lindsey\'s Wedding',
+			layout: 'admin-layout',
+			currentPage: 'poll',
+			pollResponses: responses
+		});		
 	});
 };
 
@@ -85,7 +91,7 @@ exports.logout = function(req, res) {
 function renderErrorFor(err, res) {
 
 	res.render('admin-error', {
-		title: 'Error - Shea & Lindsey\'s Wedding',
+		title: 'Error - Admin - Shea & Lindsey\'s Wedding',
 		layout: 'admin-layout',
 		error: err
 	});

@@ -1,5 +1,13 @@
 var db = require('../config/db-schema');
 
+exports.getAll = function(next) {
+	
+	db.Poll.find({}, function(err, docs) {
+		if (err) handleErrorFor(err, next);
+		return next(null, docs);
+	});
+};
+
 exports.getTotalCount = function(next) {
 
 	db.Poll.count({}, function(err, count) {

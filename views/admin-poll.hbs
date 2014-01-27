@@ -1,7 +1,44 @@
 <div class="row">
 	<div class="large-12 columns">
 	
-		<p>TODO</p>
+		<h3>All Poll Results</h3>
+		
+		{{#if pollResponses}}
+		
+			<table>
+				<thead>
+					<tr>
+						<th>Time</th>
+						<th>Florida</th>
+						<th>Iowa</th>
+						<th>Not Going</th>
+					</tr>
+				<thead>
+				<tbody>
+					{{#each pollResponses}}
+						<tr>
+							<td>
+								{{date}}
+							</td>
+							<td>
+								{{florida}}
+							</td>
+							<td>
+								{{iowa}}
+							</td>
+							<td>
+								{{notGoing}}
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		
+		{{else}}
+		
+			<p>There are no poll responses yet.</p>
+		
+		{{/if}}
 	
 	</div>
 </div>
