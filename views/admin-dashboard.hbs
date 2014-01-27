@@ -3,8 +3,16 @@
 	
 		<h3>Hey there, {{user.name}}!</h3>
 		
-		<p>Click above to find something to do.</p>
-	
+		<p>{{poll.totalCount}} people have taken the poll:</p>
+		
+		<ul>
+			<li>{{poll.floridaCount}} think they can make it to Florida.</li>
+			<li>{{poll.iowaCount}} think they can make it to Iowa.</li>
+			<li>{{poll.notGoingCount}} think they can't go.</li>
+		</ul>
+		
+		<br/>
+		<br/>
 	</div>
 </div>
 

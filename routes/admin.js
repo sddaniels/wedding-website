@@ -1,3 +1,7 @@
+var async = require('async');
+var pollRepo = require('../repositories/poll-repository');
+
+
 exports.index = function(req, res) {
 
 	var message = req.session.message;
@@ -33,11 +37,25 @@ exports.indexPost = function(req, res, next) {
 
 exports.dashboard = function(req, res) {
 
-	res.render('admin-dashboard', { 
-		title: 'Admin - Shea & Lindsey\'s Wedding',
-		layout: 'admin-layout',
-		user: req.user
-	});
+	async.parallel(
+		{
+			totalCount: pollRepo.getTotalCount,
+			floridaCount: pollRepo.getFloridaCount,
+			iowaCount: pollRepo.getIowaCount,
+			notGoingCount: pollRepo.getNotGoingCount
+		},
+		function(err, pollData) {
+		
+			if (err) renderErrorFor(err, res);
+		
+			res.render('admin-dashboard', { 
+				title: 'Admin - Shea & Lindsey\'s Wedding',
+				layout: 'admin-layout',
+				user: req.user,
+				poll: pollData
+			});
+		}
+	);
 };
 
 exports.rsvp = function(req, res) {
@@ -63,3 +81,12 @@ exports.logout = function(req, res) {
 	req.logout();
 	res.redirect('/admin');
 };
+
+function renderErrorFor(err, res) {
+
+	res.render('admin-error', {
+		title: 'Error - Shea & Lindsey\'s Wedding',
+		layout: 'admin-layout',
+		error: err
+	});
+}

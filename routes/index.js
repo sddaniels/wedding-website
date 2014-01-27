@@ -20,7 +20,8 @@ exports.pollPost = function(req, res) {
 	
 	pollResponse.save(function (err) { 
 		if (err) {
-			console.log ('Error saving poll.');
+			console.log('ERROR saving poll.');
+			console.log(err);
 			res.redirect('/?error=verymuchyes');
 		} else {
 			res.redirect('/?poll=done');
