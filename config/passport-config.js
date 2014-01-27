@@ -1,13 +1,14 @@
+var db = require('./db-schema');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
 passport.serializeUser(function(user, done) {
-	done(null, user.id);
+	done(null, user.username);
 });
 
-passport.deserializeUser(function(id, done) {
+passport.deserializeUser(function(username, done) {
 
-	if (id == 42) {
+	if (username === 'sddaniels') {
 		return done(null, getUser()); 
 	}
 
@@ -16,11 +17,23 @@ passport.deserializeUser(function(id, done) {
 
 passport.use(new LocalStrategy(function(username, password, done) {
 	
-	if (username == 'sddaniels' && password == 'password') {	
-		return done(null, getUser());
+	if (username === 'sddaniels') {
+	    
+	    var user = getUser();
+	    user.comparePassword(password, function(err, isMatch) {
+	    
+	    	if (err) return done(err);
+	    	
+	    	if (isMatch) {
+	    		return done(null, user);
+	    	} else {
+	    		return DoneWithError(done);
+	    	}
+	    });
+	    
+	} else {
+		return DoneWithError(done);
 	}
-	
-	return done(null, false, { message: 'Either the username or password you entered was incorrect.' });
 }));
 
 exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
@@ -34,11 +47,16 @@ exports.ensureAuthenticated = function ensureAuthenticated(req, res, next) {
 
 function getUser() {
 	
-	var user = {
-		id: 42,
+	var user = new db.User({
 		username: 'sddaniels',
-		name: 'Shea'
-	};	
+		password: '$2a$10$vjxoqB0JAeyA8lNliPbZXecIXVvT0cKmE/YjZ/t3.UASFcbVOVleC',
+		name:     'Shea'
+	});
 	
 	return user;
+}
+
+function DoneWithError(done) {
+
+	done(null, false, { message: 'Either the username or password you entered was incorrect.' });
 }

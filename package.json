@@ -15,7 +15,8 @@
     "mongoose": "3.8.x",
     "passport": "0.1.x",
     "passport-local": "0.1.x",
-    "async": "0.2.x"
+    "async": "0.2.x",
+    "bcryptjs": "0.7.x"
   },
   "license": "MIT",
   "engines": {
