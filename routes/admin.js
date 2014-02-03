@@ -90,7 +90,7 @@ exports.logout = function(req, res) {
 
 function renderErrorFor(err, res) {
 
-	res.render('admin-error', {
+	res.render('error', {
 		title: 'Error - Admin - Shea & Lindsey\'s Wedding',
 		layout: 'admin-layout',
 		error: err

@@ -20,11 +20,12 @@ mongoose.connect(uriString, null, function(err, res) {
 });
 
 // schema
-/////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 var Schema = mongoose.Schema;
 
 // users
+// -----------------------------------------------------------------------------
 
 var userSchema = new Schema({
 	username: { type: String, required: true, unique: true },
@@ -52,6 +53,7 @@ var UserModel = mongoose.model('User', userSchema);
 exports.User = UserModel;
 
 // poll results
+// -----------------------------------------------------------------------------
 
 var pollSchema = new Schema({
 	florida:  Boolean,
@@ -62,3 +64,27 @@ var pollSchema = new Schema({
 
 var PollModel = mongoose.model('Poll', pollSchema);
 exports.Poll = PollModel;
+
+// RSVPs
+// -----------------------------------------------------------------------------
+
+var guestSchema = new Schema({
+	first: { type: String, required: true },
+	last:  { type: String, required: true }
+});
+
+var rsvpSchema = new Schema({
+	emailAddress: { type: String, unique: true },
+	password:     String,
+	accept:       Boolean,
+	iowa:         Boolean,
+	decline:      Boolean,
+	guestCount:   { type: Number, required: true, min: 0 },
+	guests:       [guestSchema],
+	note:         String,
+	createDate:   { type: Date, default: Date.now },
+	updateDate:   { type: Date, default: Date.now }
+});
+
+var RsvpModel = mongoose.model('Rsvp', rsvpSchema);
+exports.Rsvp = RsvpModel;

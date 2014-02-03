@@ -1,3 +1,6 @@
+var db = require('../config/db-schema');
+var rsvpRepo = require('../repositories/rsvp-repository');
+
 exports.index = function(req, res) {
 
 	res.render('index', { 
@@ -8,9 +11,7 @@ exports.index = function(req, res) {
 };
 
 exports.pollPost = function(req, res) {
-
-	var db = require('../config/db-schema');
-	
+		
 	var pollResponse = new db.Poll({
 		florida:  userIsGoingTo('florida', req),
 		iowa:     userIsGoingTo('iowa', req),
@@ -69,7 +70,38 @@ exports.rsvp = function(req, res) {
     });
 };
 
+exports.rsvpPost = function(req, res) {
+
+	pollRepo.getByEmailAddress(req.body.emailAddress, function(err, rsvp) {
+	
+		if (err) renderErrorFor(err, res);
+	
+		if (!rsvp) {
+			var newRsvp = new db.Rsvp({
+				emailAddress: req.body.emailAddress,
+				guestCount: 0
+			});
+			
+			newRsvp.save(function(err) {
+				if (err) renderErrorFor(err, res);
+				res.redirect('/rsvp/detail/' + newRsvp._id);
+			});
+			
+		} else {
+			res.redirect('/rsvp/password/' + req.body.emailAddress);
+		}
+	});
+};
+
 function userIsGoingTo(destination, req) {
 
 	return req.body.poll === destination;
+}
+
+function renderErrorFor(err, res) {
+
+	res.render('error', {
+		title: 'Error - Shea & Lindsey\'s Wedding',
+		error: 'There was an unexpected problem with your request.'
+	});
 }

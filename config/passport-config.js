@@ -27,12 +27,12 @@ passport.use(new LocalStrategy(function(username, password, done) {
 	    	if (isMatch) {
 	    		return done(null, user);
 	    	} else {
-	    		return DoneWithError(done);
+	    		return doneWithError(done);
 	    	}
 	    });
 	    
 	} else {
-		return DoneWithError(done);
+		return doneWithError(done);
 	}
 }));
 
@@ -56,7 +56,7 @@ function getUser() {
 	return user;
 }
 
-function DoneWithError(done) {
+function doneWithError(done) {
 
 	done(null, false, { message: 'Either the username or password you entered was incorrect.' });
 }
