@@ -91,31 +91,31 @@
 				<p>You, the incredible person that you are, plus...</p>
 			</div>
 			<div>
-				<input id="guest1" type="text" name="guests[1]" style="display:none;" value="{{rsvp.guests.[1]}}"/>
+				<input id="guest1" type="text" name="guests[1]" style="display:none;" value="{{rsvp.guests.[0]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest2" type="text" name="guests[2]" style="display:none;" value="{{rsvp.guests.[2]}}"/>
+				<input id="guest2" type="text" name="guests[2]" style="display:none;" value="{{rsvp.guests.[1]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest3" type="text" name="guests[3]" style="display:none;" value="{{rsvp.guests.[3]}}"/>
+				<input id="guest3" type="text" name="guests[3]" style="display:none;" value="{{rsvp.guests.[2]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest4" type="text" name="guests[4]" style="display:none;" value="{{rsvp.guests.[4]}}"/>
+				<input id="guest4" type="text" name="guests[4]" style="display:none;" value="{{rsvp.guests.[3]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest5" type="text" name="guests[5]" style="display:none;" value="{{rsvp.guests.[5]}}"/>
+				<input id="guest5" type="text" name="guests[5]" style="display:none;" value="{{rsvp.guests.[4]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest6" type="text" name="guests[6]" style="display:none;" value="{{rsvp.guests.[6]}}"/>
+				<input id="guest6" type="text" name="guests[6]" style="display:none;" value="{{rsvp.guests.[5]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest7" type="text" name="guests[7]" style="display:none;" value="{{rsvp.guests.[7]}}"/>
+				<input id="guest7" type="text" name="guests[7]" style="display:none;" value="{{rsvp.guests.[6]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest8" type="text" name="guests[8]" style="display:none;" value="{{rsvp.guests.[8]}}"/>
+				<input id="guest8" type="text" name="guests[8]" style="display:none;" value="{{rsvp.guests.[7]}}" placeholder="Guest Name"/>
 			</div>
 			<div>
-				<input id="guest9" type="text" name="guests[9]" style="display:none;" value="{{rsvp.guests.[9]}}"/>
+				<input id="guest9" type="text" name="guests[9]" style="display:none;" value="{{rsvp.guests.[8]}}" placeholder="Guest Name"/>
 			</div>
 			
 			<button id="add-guest" type="button" class="button small round">Add Another Guest</button>
@@ -161,12 +161,41 @@
 				$('#add-guest').hide();
 			}
 		}
+		
+		function showTextFields() {
+			
+			// show all guest inputs until we hit an empty one
+			for (var i=1; i < 10; i++) {
+				
+				var $currInput = $('#guest' + i);
+				
+				if ($.trim($currInput.val()) != '') {
+					$currInput.show();
+				} else {
+					break;
+				}
+			}
+		}
+		
+		function updateGuestCount() {
+			
+			var guestCount = $('#rsvp-guest input').filter(function() {
+				return $.trim($(this).val()) != '';
+			}).length;
+			guestCount++;
+			
+			$('#number-attending-count').html(guestCount);
+		}
 
+		// startup
+		showTextFields();
 		hideButton();
+		updateGuestCount();
 	
+		// bindings
 		$('#add-guest').click(function() {
 	
-			// find the first available input and show it
+			// find the first available guest input and show it
 			for (var i=1; i < 10; i++) {
 		
 				var $currInput = $('#guest' + i);
@@ -181,13 +210,7 @@
 		});
 		
 		$('#rsvp-guest input').bind('keyup input change propertychange', function(e) {
-			
-			var guestCount = $('#rsvp-guest input').filter(function() {
-				return $.trim($(this).val()) != '';
-			}).length;
-			guestCount++;
-			
-			$('#number-attending-count').html(guestCount);
+			updateGuestCount();
 		});
 
 	});

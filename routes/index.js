@@ -128,12 +128,12 @@ exports.rsvpDetailPost = function(req, res) {
 		rsvp.decline = userRSVPed('decline', req);
 		rsvp.note = req.body.rsvpNote;
 		
-		//rsvp.guests = [];
-		//for (var i in req.body.guests) {
-		//	if (req.body.guests[i]) {
-		//		rsvp.guests.push(req.body.guests[i]);
-		//	}
-		//}
+		rsvp.guests = [];
+		for (var i in req.body.guests) {
+			if (req.body.guests[i]) {
+				rsvp.guests.push(req.body.guests[i]);
+			}
+		}
 		
 		if (!rsvp.name) {
 			return renderValidationErrorFor(rsvp, 'Please enter your name.', res);
