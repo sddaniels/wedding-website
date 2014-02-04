@@ -48,6 +48,7 @@ app.get('/photos', routes.photos);
 app.get('/rsvp', routes.rsvp);
 app.post('/rsvp', routes.rsvpPost);
 app.get('/rsvp/detail/:id', routes.rsvpDetail);
+app.post('/rsvp/detail', routes.rsvpDetailPost);
 
 app.get('/admin', adminRoutes.index);
 app.post('/admin', adminRoutes.indexPost);

@@ -48,17 +48,29 @@
 		<div class="large-6 columns">
 	
 			<label class="radio-label" for="rsvp-accept">
-				<input type="radio" id="rsvp-accept" name="rsvpAttendance" value="accept" />
+				{{#if rsvp.accept}}
+					<input type="radio" id="rsvp-accept" name="rsvpAnswer" value="accept" checked="checked" />
+				{{else}}
+					<input type="radio" id="rsvp-accept" name="rsvpAnswer" value="accept" />
+				{{/if}}
 				&nbsp;
 				Accept with pleasure
 			</label>
 			<label class="radio-label" for="rsvp-iowa">
-				<input type="radio" id="rsvp-iowa" name="rsvpAttendance" value="iowa" />
+				{{#if rsvp.iowa}}
+					<input type="radio" id="rsvp-iowa" name="rsvpAnswer" value="iowa" checked="checked" />
+				{{else}}
+					<input type="radio" id="rsvp-iowa" name="rsvpAnswer" value="iowa" />
+				{{/if}}
 				&nbsp;
 				Hope to see you in Iowa for the June Reception...
 			</label>
 			<label class="radio-label" for="rsvp-decline">
-				<input type="radio" id="rsvp-decline" name="rsvpAttendance" value="decline" />
+				{{#if rsvp.decline}}
+					<input type="radio" id="rsvp-decline" name="rsvpAnswer" value="decline" checked="checked" />
+				{{else}}
+					<input type="radio" id="rsvp-decline" name="rsvpAnswer" value="decline" />
+				{{/if}}
 				&nbsp;
 				Regretfully decline
 			</label>
@@ -76,34 +88,34 @@
 		<div id="rsvp-guest" class="large-6 columns">
 	
 			<div>
-				<p>You, of course!</p>
+				<p>You, the incredible person that you are, plus...</p>
 			</div>
 			<div>
-				<input id="guest1" type="text" name="guest1" style="display:none;" value="{{rsvp.guest1}}"/>
+				<input id="guest1" type="text" name="guests[1]" style="display:none;" value="{{rsvp.guests.[1]}}"/>
 			</div>
 			<div>
-				<input id="guest2" type="text" name="guest2" style="display:none;" value="{{rsvp.guest2}}"/>
+				<input id="guest2" type="text" name="guests[2]" style="display:none;" value="{{rsvp.guests.[2]}}"/>
 			</div>
 			<div>
-				<input id="guest3" type="text" name="guest3" style="display:none;" value="{{rsvp.guest3}}"/>
+				<input id="guest3" type="text" name="guests[3]" style="display:none;" value="{{rsvp.guests.[3]}}"/>
 			</div>
 			<div>
-				<input id="guest4" type="text" name="guest4" style="display:none;" value="{{rsvp.guest4}}"/>
+				<input id="guest4" type="text" name="guests[4]" style="display:none;" value="{{rsvp.guests.[4]}}"/>
 			</div>
 			<div>
-				<input id="guest5" type="text" name="guest5" style="display:none;" value="{{rsvp.guest5}}"/>
+				<input id="guest5" type="text" name="guests[5]" style="display:none;" value="{{rsvp.guests.[5]}}"/>
 			</div>
 			<div>
-				<input id="guest6" type="text" name="guest6" style="display:none;" value="{{rsvp.guest6}}"/>
+				<input id="guest6" type="text" name="guests[6]" style="display:none;" value="{{rsvp.guests.[6]}}"/>
 			</div>
 			<div>
-				<input id="guest7" type="text" name="guest7" style="display:none;" value="{{rsvp.guest7}}"/>
+				<input id="guest7" type="text" name="guests[7]" style="display:none;" value="{{rsvp.guests.[7]}}"/>
 			</div>
 			<div>
-				<input id="guest8" type="text" name="guest8" style="display:none;" value="{{rsvp.guest8}}"/>
+				<input id="guest8" type="text" name="guests[8]" style="display:none;" value="{{rsvp.guests.[8]}}"/>
 			</div>
 			<div>
-				<input id="guest9" type="text" name="guest9" style="display:none;" value="{{rsvp.guest9}}"/>
+				<input id="guest9" type="text" name="guests[9]" style="display:none;" value="{{rsvp.guests.[9]}}"/>
 			</div>
 			
 			<button id="add-guest" type="button" class="button small round">Add Another Guest</button>
@@ -125,7 +137,7 @@
 	
 			<h3>Write us a note</h3>
 			<div>
-				<textarea id="rsvp-note" name="note" rows="4"></textarea>
+				<textarea id="rsvpNote" name="rsvpNote">{{rsvp.note}}</textarea>
 			</div>
 			<br/>
 			<div>

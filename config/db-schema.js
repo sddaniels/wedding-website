@@ -71,13 +71,14 @@ exports.Poll = PollModel;
 
 var rsvpSchema = new Schema({
 	rsvpId:       { type: String, unique: true },
-	emailAddress: { type: String, unique: true },
+	emailAddress: { type: String, required: true, unique: true },
 	name:         String,
 	accept:       Boolean,
 	iowa:         Boolean,
 	decline:      Boolean,
 	guestCount:   { type: Number, required: true, min: 0 },
 	guests:       [String],
+	note:         String,
 	createDate:   { type: Date, default: Date.now },
 	updateDate:   { type: Date, default: Date.now }
 });
@@ -90,7 +91,8 @@ rsvpSchema.pre('save', function(next) {
 		rsvp.rsvpId = uuid.v4();
 	}
 	
-	rsvp.guestCount = guests.length + 1;
+	rsvp.guestCount = rsvp.guests.length + 1;
+	rsvp.updateDate = new Date();
 	
 	return next();	
 });

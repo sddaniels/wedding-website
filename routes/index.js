@@ -87,7 +87,8 @@ exports.rsvpPost = function(req, res) {
 	
 		if (!rsvp) {
 			var newRsvp = new db.Rsvp({
-				emailAddress: req.body.emailAddress
+				emailAddress: req.body.emailAddress,
+				guestCount: 0
 			});
 			
 			newRsvp.save(function(err) {
@@ -113,7 +114,42 @@ exports.rsvpDetail = function(req, res) {
 			rsvp: rsvp
 		});
 	});
-}
+};
+
+exports.rsvpDetailPost = function(req, res) {
+
+	rsvpRepo.getByRsvpId(req.body.rsvpId, function(err, rsvp) {
+	
+		if (err || !rsvp) renderErrorFor(err, res);
+	
+		rsvp.name = req.body.rsvpName;
+		rsvp.accept = userRSVPed('accept', req);
+		rsvp.iowa = userRSVPed('iowa', req);
+		rsvp.decline = userRSVPed('decline', req);
+		rsvp.note = req.body.rsvpNote;
+		
+		//rsvp.guests = [];
+		//for (var i in req.body.guests) {
+		//	if (req.body.guests[i]) {
+		//		rsvp.guests.push(req.body.guests[i]);
+		//	}
+		//}
+		
+		if (!rsvp.name) {
+			return renderValidationErrorFor(rsvp, 'Please enter your name.', res);
+		}
+		if (!rsvp.accept && !rsvp.iowa && !rsvp.decline) {
+			return renderValidationErrorFor(rsvp, "Please let us know if you're coming!", res);
+		}
+		
+		rsvp.save(function(err) {
+			console.log('save starting');
+			if (err) renderErrorFor(err, res);
+			console.log('save done');
+			res.redirect('/rsvp/thanks');
+		});
+	});
+};
 
 
 function userIsGoingTo(destination, req) {
@@ -121,10 +157,25 @@ function userIsGoingTo(destination, req) {
 	return req.body.poll === destination;
 }
 
+function userRSVPed(rsvpAnswer, req) {
+
+	return req.body.rsvpAnswer === rsvpAnswer;
+}
+
 function renderErrorFor(err, res) {
 
 	res.render('error', {
 		title: 'Error - Shea & Lindsey\'s Wedding',
 		error: 'There was an unexpected problem with your request.'
+	});
+}
+
+function renderValidationErrorFor(rsvp, message, res) {
+
+	return res.render('rsvp-detail', { 
+		title: 'RSVP - Shea & Lindsey\'s Wedding',
+		currentPage: 'rsvp',
+		message: message,
+		rsvp: rsvp
 	});
 }
