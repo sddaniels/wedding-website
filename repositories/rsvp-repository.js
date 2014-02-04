@@ -16,6 +16,14 @@ exports.getByEmailAddress = function(emailAddress, next) {
 	});
 };
 
+exports.getByRsvpId = function(id, next) {
+
+	db.Rsvp.findOne({ rsvpId: id }, function(err, doc) {
+		if (err) handlErrorFor(err, next);
+		return next(null, doc);
+	});
+};
+
 function handleErrorFor(err, next) {
 
 	console.log('ERROR getting rsvp data.');

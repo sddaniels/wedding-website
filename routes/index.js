@@ -87,8 +87,7 @@ exports.rsvpPost = function(req, res) {
 	
 		if (!rsvp) {
 			var newRsvp = new db.Rsvp({
-				emailAddress: req.body.emailAddress,
-				guestCount: 0
+				emailAddress: req.body.emailAddress
 			});
 			
 			newRsvp.save(function(err) {
@@ -101,6 +100,20 @@ exports.rsvpPost = function(req, res) {
 		}
 	});
 };
+
+exports.rsvpDetail = function(req, res) {
+	
+	rsvpRepo.getByRsvpId(req.params.id, function(err, rsvp) {
+	
+		if (err || !rsvp) renderErrorFor(err, res);
+	
+		res.render('rsvp-detail', {
+			title: 'RSVP - Shea & Lindsey\'s Wedding',
+			currentPage: 'rsvp',
+			rsvp: rsvp
+		});
+	});
+}
 
 
 function userIsGoingTo(destination, req) {

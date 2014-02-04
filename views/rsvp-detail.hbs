@@ -1,0 +1,184 @@
+<div id="rsvp-banner" class="banner">
+	<div class="row">
+		<div class="large-12 columns">
+			<h2>
+				RSVP
+			</h2>
+		</div>
+	</div>
+</div>
+
+<div class="date-row row">
+	<div class="large-12 columns">
+		<h3>APRIL 26<sup>TH</sup>, 2014 <i class="fa fa-circle"></i> BRADENTON BEACH, FL</h3>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+		{{#if message}}
+			<div data-alert class="alert-box alert radius">
+			  
+			  {{message}}
+			  
+			  <a href="#" class="close">&times;</a>
+			</div>
+		{{/if}}
+	</div>
+</div>
+
+<form action="/rsvp/detail" method="post">
+
+	<div class="row">
+		<div class="large-12 columns">
+			<h3>Let's get your info!</h3>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-6 columns">
+	
+			<div>
+				<label for="rsvpName">Your name:</label>
+				<input id="rsvpName" type="text" name="rsvpName" value="{{rsvp.name}}"/>
+			</div>
+	
+		</div>
+
+		<div class="large-6 columns">
+	
+			<label class="radio-label" for="rsvp-accept">
+				<input type="radio" id="rsvp-accept" name="rsvpAttendance" value="accept" />
+				&nbsp;
+				Accept with pleasure
+			</label>
+			<label class="radio-label" for="rsvp-iowa">
+				<input type="radio" id="rsvp-iowa" name="rsvpAttendance" value="iowa" />
+				&nbsp;
+				Hope to see you in Iowa for the June Reception...
+			</label>
+			<label class="radio-label" for="rsvp-decline">
+				<input type="radio" id="rsvp-decline" name="rsvpAttendance" value="decline" />
+				&nbsp;
+				Regretfully decline
+			</label>
+	
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="large-12 columns">
+			<h3>Guests in your party</h3>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div id="rsvp-guest" class="large-6 columns">
+	
+			<div>
+				<p>You, of course!</p>
+			</div>
+			<div>
+				<input id="guest1" type="text" name="guest1" style="display:none;" value="{{rsvp.guest1}}"/>
+			</div>
+			<div>
+				<input id="guest2" type="text" name="guest2" style="display:none;" value="{{rsvp.guest2}}"/>
+			</div>
+			<div>
+				<input id="guest3" type="text" name="guest3" style="display:none;" value="{{rsvp.guest3}}"/>
+			</div>
+			<div>
+				<input id="guest4" type="text" name="guest4" style="display:none;" value="{{rsvp.guest4}}"/>
+			</div>
+			<div>
+				<input id="guest5" type="text" name="guest5" style="display:none;" value="{{rsvp.guest5}}"/>
+			</div>
+			<div>
+				<input id="guest6" type="text" name="guest6" style="display:none;" value="{{rsvp.guest6}}"/>
+			</div>
+			<div>
+				<input id="guest7" type="text" name="guest7" style="display:none;" value="{{rsvp.guest7}}"/>
+			</div>
+			<div>
+				<input id="guest8" type="text" name="guest8" style="display:none;" value="{{rsvp.guest8}}"/>
+			</div>
+			<div>
+				<input id="guest9" type="text" name="guest9" style="display:none;" value="{{rsvp.guest9}}"/>
+			</div>
+			
+			<button id="add-guest" type="button" class="button small round">Add Another Guest</button>
+	
+		</div>
+
+		<div id="number-attending" class="large-6 columns">
+			number attending
+			<br/>
+			<br/>
+			<div id="number-attending-count">
+				1
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="large-12 columns">
+	
+			<h3>Write us a note</h3>
+			<div>
+				<textarea id="rsvp-note" name="note" rows="4"></textarea>
+			</div>
+			<br/>
+			<div>
+				<button type="submit" class="button round">Save your RSVP</button>
+			</div>		
+
+			<input id="rsvpId" type="hidden" name="rsvpId" value="{{rsvp.rsvpId}}"/>
+	
+		</div>
+	</div>
+	
+</form>
+
+{{#extend "scripts"}}
+
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		function hideButton() {
+			if ($('#guest9').is(':visible')) {
+				$('#add-guest').hide();
+			}
+		}
+
+		hideButton();
+	
+		$('#add-guest').click(function() {
+	
+			// find the first available input and show it
+			for (var i=1; i < 10; i++) {
+		
+				var $currInput = $('#guest' + i);
+			
+				if (!$currInput.is(':visible')) {
+					$currInput.show();
+					break;
+				}
+			}
+		
+			hideButton();
+		});
+		
+		$('#rsvp-guest input').bind('keyup input change propertychange', function(e) {
+			
+			var guestCount = $('#rsvp-guest input').filter(function() {
+				return $.trim($(this).val()) != '';
+			}).length;
+			guestCount++;
+			
+			$('#number-attending-count').html(guestCount);
+		});
+
+	});
+</script>
+
+{{/extend}}
