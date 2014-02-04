@@ -46,6 +46,7 @@ app.get('/iowa', routes.iowa);
 app.get('/registry', routes.registry);
 app.get('/photos', routes.photos);
 app.get('/rsvp', routes.rsvp);
+app.post('/rsvp', routes.rsvpPost);
 
 app.get('/admin', adminRoutes.index);
 app.post('/admin', adminRoutes.indexPost);

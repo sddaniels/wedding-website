@@ -11,13 +11,32 @@
 <div class="row">
 	<div class="large-12 columns">
 
-		<br/>
-		<br/>
-		<div data-alert class="alert-box radius">
-			RSVP will be coming soon!
-		</div>
-		<br/>
-		<br/>
+		{{#if message}}
+			<div data-alert class="alert-box alert radius">
+			  
+			  {{message}}
+			  
+			  <a href="#" class="close">&times;</a>
+			</div>
+		{{/if}}	
+
+		<form action="/rsvp" method="post">
+		
+			<h3>Enter your email address to get started:</h3>
+		
+			<div>
+				<input id="emailAddress" type="text" name="emailAddress" value="{{emailAddress}}"/>
+			</div>
+			<div class="row">
+				<div class="large-3 columns">
+					<button type="submit" class="button round">Start Your RSVP</button>
+				</div>
+				<div id="rsvp-email-hint" class="large-9 columns">
+					We're asking for your email address so you can change your RSVP later, if you need to.
+				</div>
+			</div>		
+	
+		</form>
 
 	</div>
 </div>

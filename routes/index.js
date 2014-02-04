@@ -72,7 +72,16 @@ exports.rsvp = function(req, res) {
 
 exports.rsvpPost = function(req, res) {
 
-	pollRepo.getByEmailAddress(req.body.emailAddress, function(err, rsvp) {
+	if (!req.body.emailAddress || req.body.emailAddress.indexOf("@") == -1) {
+	
+		return res.render('rsvp', { 
+			title: 'RSVP - Shea & Lindsey\'s Wedding',
+			currentPage: 'rsvp',
+			message: 'Please enter a valid email address!'
+		});
+	}
+
+	rsvpRepo.getByEmailAddress(req.body.emailAddress, function(err, rsvp) {
 	
 		if (err) renderErrorFor(err, res);
 	
@@ -84,14 +93,15 @@ exports.rsvpPost = function(req, res) {
 			
 			newRsvp.save(function(err) {
 				if (err) renderErrorFor(err, res);
-				res.redirect('/rsvp/detail/' + newRsvp._id);
+				res.redirect('/rsvp/detail/' + newRsvp.rsvpId);
 			});
 			
 		} else {
-			res.redirect('/rsvp/password/' + req.body.emailAddress);
+			res.redirect('/rsvp/code/');
 		}
 	});
 };
+
 
 function userIsGoingTo(destination, req) {
 

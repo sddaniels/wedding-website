@@ -1,4 +1,5 @@
 var bcrypt = require('bcryptjs');
+var uuid = require('uuid');
 var mongoose = require('mongoose');
 exports.mongoose = mongoose;
 
@@ -74,6 +75,7 @@ var guestSchema = new Schema({
 });
 
 var rsvpSchema = new Schema({
+	rsvpId:       { type: String, unique: true },
 	emailAddress: { type: String, unique: true },
 	password:     String,
 	accept:       Boolean,
@@ -84,6 +86,17 @@ var rsvpSchema = new Schema({
 	note:         String,
 	createDate:   { type: Date, default: Date.now },
 	updateDate:   { type: Date, default: Date.now }
+});
+
+rsvpSchema.pre('save', function(next) {
+	
+	var rsvp = this;
+	
+	if (!rsvp.rsvpId) {
+		rsvp.rsvpId = uuid.v4();
+	}
+	
+	return next();	
 });
 
 var RsvpModel = mongoose.model('Rsvp', rsvpSchema);
