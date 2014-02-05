@@ -81,6 +81,11 @@ exports.rsvpPost = function(req, res) {
 			message: 'Please enter a valid email address!'
 		});
 	}
+	
+	// honeypot check
+	if (req.body.nameField) {
+		return renderErrorFor('honeypot triggered', res);
+	}
 
 	rsvpRepo.getByEmailAddress(req.body.emailAddress, function(err, rsvp) {
 	
@@ -119,7 +124,8 @@ exports.rsvpDetail = function(req, res) {
 	
 	rsvpRepo.getByRsvpId(req.params.id, function(err, rsvp) {
 	
-		if (err || !rsvp) renderErrorFor(err, res);
+		if (err) renderErrorFor(err, res);
+		if (!rsvp) renderErrorFor('RSVP not found: ' + req.params.id, res);
 	
 		res.render('rsvp-detail', {
 			title: 'RSVP - Shea & Lindsey\'s Wedding',
@@ -133,7 +139,8 @@ exports.rsvpDetailPost = function(req, res) {
 
 	rsvpRepo.getByRsvpId(req.body.rsvpId, function(err, rsvp) {
 	
-		if (err || !rsvp) renderErrorFor(err, res);
+		if (err) renderErrorFor(err, res);
+		if (!rsvp) renderErrorFor('RSVP not found: ' + req.params.id, res);
 	
 		rsvp.name = req.body.rsvpName;
 		rsvp.accept = userRSVPed('accept', req);
@@ -143,8 +150,11 @@ exports.rsvpDetailPost = function(req, res) {
 		
 		rsvp.guests = [];
 		for (var i in req.body.guests) {
-			if (req.body.guests[i]) {
-				rsvp.guests.push(req.body.guests[i]);
+		
+			var guestName = req.body.guests[i];
+			
+			if (guestName && guestName.trim() != '') {
+				rsvp.guests.push(guestName);
 			}
 		}
 		
@@ -156,7 +166,12 @@ exports.rsvpDetailPost = function(req, res) {
 		}
 		
 		rsvp.save(function(err) {
+		
 			if (err) renderErrorFor(err, res);
+			
+			emailer.sendConfirmationFor(rsvp, function(err) {
+				// do nothing, treat this as fire and forget
+			});
 			res.redirect('/rsvp/thanks/' + rsvp.rsvpId);
 		});
 	});
@@ -188,6 +203,9 @@ function userRSVPed(rsvpAnswer, req) {
 }
 
 function renderErrorFor(err, res) {
+
+	console.error('rendering error page');
+	console.error(err);
 
 	res.render('error', {
 		title: 'Error - Shea & Lindsey\'s Wedding',

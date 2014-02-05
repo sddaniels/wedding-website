@@ -175,15 +175,18 @@
 		
 		function showTextFields() {
 			
-			// show all guest inputs until we hit an empty one
-			for (var i=1; i < 10; i++) {
+			// loop backwards, start showing once we find input
+			var showInput = false;
+			for (var i=9; i > 0; i--) {
 				
 				var $currInput = $('#guest' + i);
 				
 				if ($.trim($currInput.val()) != '') {
+					showInput = true;
+				}
+				
+				if (showInput) {
 					$currInput.show();
-				} else {
-					break;
 				}
 			}
 		}
