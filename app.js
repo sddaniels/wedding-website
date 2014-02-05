@@ -31,8 +31,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // development only
 if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
+	app.use(express.errorHandler());
 }
+
+// 404
+app.use(function(req, res, next){
+	res.status(404);
+	res.render('error', {
+		title: '404 - Shea & Lindsey\'s Wedding',
+		error: 'We couldn\'t find the page you were looking for!'
+	});
+});
 
 // routing
 app.get('/', indexController.index);
