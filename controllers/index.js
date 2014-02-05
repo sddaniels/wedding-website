@@ -99,7 +99,7 @@ exports.rsvpPost = function(req, res) {
 			
 		} else {
 		
-			emailer.sendTestEmailTo(rsvp.emailAddress, function(err) {
+			emailer.sendRsvpLinkTo(rsvp.emailAddress, rsvp.rsvpId, function(err) {
 				// do nothing, treat this as fire and forget
 			});
 			res.redirect('/rsvp/linksent/');

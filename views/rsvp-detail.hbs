@@ -158,6 +158,15 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		function setFocus() {
+		
+			var $nameInput = $('#rsvpName');
+			
+			if ($.trim($nameInput.val()) == '') {
+				$nameInput.focus();
+			}
+		}
+
 		function hideButton() {
 			if ($('#guest9').is(':visible')) {
 				$('#add-guest').hide();
@@ -190,7 +199,7 @@
 		}
 
 		// startup
-		$('#rsvpName').focus();
+		setFocus();
 		showTextFields();
 		hideButton();
 		updateGuestCount();
