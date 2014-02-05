@@ -27,7 +27,7 @@
 	</div>
 </div>
 
-<form action="/rsvp/detail" method="post">
+<form action="/rsvp/detail/{{rsvp.rsvpId}}" method="post">
 
 	<div class="row">
 		<div class="large-12 columns">
@@ -131,6 +131,7 @@
 			</div>
 		</div>
 	</div>
+	<br/>
 
 	<div class="row">
 		<div class="large-12 columns">
@@ -150,6 +151,7 @@
 	</div>
 	
 </form>
+<br/>
 
 {{#extend "scripts"}}
 
@@ -188,11 +190,12 @@
 		}
 
 		// startup
+		$('#rsvpName').focus();
 		showTextFields();
 		hideButton();
 		updateGuestCount();
 	
-		// bindings
+		// event bindings
 		$('#add-guest').click(function() {
 	
 			// find the first available guest input and show it

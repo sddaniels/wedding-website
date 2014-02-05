@@ -1,11 +1,5 @@
-
-/**
- * Module dependencies.
- */
-
+// module dependencies.
 var express = require('express');
-var routes = require('./routes');
-var adminRoutes = require('./routes/admin');
 var http = require('http');
 var path = require('path');
 var lessMiddleware = require('less-middleware');
@@ -13,6 +7,8 @@ var passport = require('passport');
 var db = require('./config/db-schema');
 var auth = require('./config/passport-config');
 var hbs = require('hbs');
+var indexController = require('./controllers');
+var adminController = require('./controllers/admin');
 
 require('./config/hbs-helpers')(hbs);
 var app = express();
@@ -39,23 +35,25 @@ if ('development' == app.get('env')) {
 }
 
 // routing
-app.get('/', routes.index);
-app.post('/poll', routes.pollPost);
-app.get('/florida', routes.florida);
-app.get('/iowa', routes.iowa);
-app.get('/registry', routes.registry);
-app.get('/photos', routes.photos);
-app.get('/rsvp', routes.rsvp);
-app.post('/rsvp', routes.rsvpPost);
-app.get('/rsvp/detail/:id', routes.rsvpDetail);
-app.post('/rsvp/detail', routes.rsvpDetailPost);
+app.get('/', indexController.index);
+app.post('/poll', indexController.pollPost);
+app.get('/florida', indexController.florida);
+app.get('/iowa', indexController.iowa);
+app.get('/registry', indexController.registry);
+app.get('/photos', indexController.photos);
 
-app.get('/admin', adminRoutes.index);
-app.post('/admin', adminRoutes.indexPost);
-app.get('/admin/dashboard', auth.ensureAuthenticated, adminRoutes.dashboard);
-app.get('/admin/rsvp', auth.ensureAuthenticated, adminRoutes.rsvp);
-app.get('/admin/poll', auth.ensureAuthenticated, adminRoutes.poll);
-app.get('/admin/logout', adminRoutes.logout);
+app.get('/rsvp', indexController.rsvp);
+app.post('/rsvp', indexController.rsvpPost);
+app.get('/rsvp/linksent', indexController.rsvpLinkSent);
+app.get('/rsvp/detail/:id', indexController.rsvpDetail);
+app.post('/rsvp/detail/:id', indexController.rsvpDetailPost);
+
+app.get('/admin', adminController.index);
+app.post('/admin', adminController.indexPost);
+app.get('/admin/dashboard', auth.ensureAuthenticated, adminController.dashboard);
+app.get('/admin/rsvp', auth.ensureAuthenticated, adminController.rsvp);
+app.get('/admin/poll', auth.ensureAuthenticated, adminController.poll);
+app.get('/admin/logout', adminController.logout);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

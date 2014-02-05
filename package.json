@@ -17,7 +17,8 @@
     "passport-local": "0.1.x",
     "async": "0.2.x",
     "bcryptjs": "0.7.x",
-    "uuid": "1.4.x"
+    "uuid": "1.4.x",
+    "sendgrid": "1.0.0-rc.1.0"
   },
   "license": "MIT",
   "engines": {

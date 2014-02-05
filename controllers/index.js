@@ -1,3 +1,4 @@
+var emailer = require('../config/emailer');
 var db = require('../config/db-schema');
 var rsvpRepo = require('../repositories/rsvp-repository');
 
@@ -97,10 +98,22 @@ exports.rsvpPost = function(req, res) {
 			});
 			
 		} else {
-			res.redirect('/rsvp/code/');
+		
+			emailer.sendTestEmailTo(rsvp.emailAddress, function(err) {
+				// do nothing, treat this as fire and forget
+			});
+			res.redirect('/rsvp/linksent/');
 		}
 	});
 };
+
+exports.rsvpLinkSent = function(req, res) {
+	
+	res.render('rsvp-linksent', {
+		title: 'RSVP Link Sent - Shea & Lindsey\'s Wedding',
+		currentPage: 'rsvp'
+	});
+}
 
 exports.rsvpDetail = function(req, res) {
 	
@@ -143,9 +156,7 @@ exports.rsvpDetailPost = function(req, res) {
 		}
 		
 		rsvp.save(function(err) {
-			console.log('save starting');
 			if (err) renderErrorFor(err, res);
-			console.log('save done');
 			res.redirect('/rsvp/thanks');
 		});
 	});
