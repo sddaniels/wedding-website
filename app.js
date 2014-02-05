@@ -47,6 +47,7 @@ app.post('/rsvp', indexController.rsvpPost);
 app.get('/rsvp/linksent', indexController.rsvpLinkSent);
 app.get('/rsvp/detail/:id', indexController.rsvpDetail);
 app.post('/rsvp/detail/:id', indexController.rsvpDetailPost);
+app.get('/rsvp/thanks/:id', indexController.rsvpThanks);
 
 app.get('/admin', adminController.index);
 app.post('/admin', adminController.indexPost);

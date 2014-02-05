@@ -157,7 +157,21 @@ exports.rsvpDetailPost = function(req, res) {
 		
 		rsvp.save(function(err) {
 			if (err) renderErrorFor(err, res);
-			res.redirect('/rsvp/thanks');
+			res.redirect('/rsvp/thanks/' + rsvp.rsvpId);
+		});
+	});
+};
+
+exports.rsvpThanks = function(req, res) {
+
+	rsvpRepo.getByRsvpId(req.params.id, function(err, rsvp) {
+	
+		if (err) renderErrorFor(err, res);
+		
+		res.render('rsvp-thanks', {
+			title: 'Thanks for the RSVP - Shea & Lindsey\'s Wedding',
+			currentPage: 'rsvp',
+			rsvp: rsvp
 		});
 	});
 };

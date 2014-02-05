@@ -1,0 +1,74 @@
+<div id="rsvp-banner" class="banner">
+	<div class="row">
+		<div class="large-12 columns">
+			<h2>
+				RSVP
+			</h2>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="large-12 columns">
+
+		<h3>Thanks for letting us know</h3>
+		
+		<p>
+			We just sent you an email to confirm your RSVP.
+		</p>
+		
+		<p> If anything changes, you can use
+			the link in the email to log back into your RSVP and update it. Please make
+			any changes by March 1st, 2014.
+		</p>
+		
+		{{#if rsvp.accept}}
+		
+			<h3>See you on the beach!</h3>
+			
+			<p>
+				<img src="http://i.imgur.com/lf0kR.gif" alt="" />
+			<p>
+			
+			<p>
+				<img src="http://i.imgur.com/uLj0u.gif" alt="" />
+			</p>
+			
+			<p>
+				<img src="http://i.imgur.com/yLc4poE.gif" alt="" />
+			</p>
+			
+			<p>
+				<img src="http://i.imgur.com/pXjrQ.gif" alt="" />
+			</p>
+		
+		{{/if}}
+		
+		{{#if rsvp.iowa}}
+		
+			<h3>Hope to see you in June!</h3>
+			
+			<p>
+				<img src="http://i.imgur.com/Mlpfb.gif" alt="" />
+			</p>
+		
+		{{/if}}
+		
+		{{#if rsvp.decline}}
+		
+			<h3>Wish you could make it, we'll miss you!</h3>
+			
+			<p>
+				<img src="http://i.imgur.com/fkLF9.gif" alt="" />
+			</p>
+			
+		{{/if}}
+
+		<br/>
+		<br/>
+	</div>
+</div>
+
+{{#extend "scripts"}}
+
+{{/extend}}
