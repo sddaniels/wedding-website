@@ -89,7 +89,7 @@ exports.rsvpPost = function(req, res) {
 
 	rsvpRepo.getByEmailAddress(req.body.emailAddress, function(err, rsvp) {
 	
-		if (err) renderErrorFor(err, res);
+		if (err) return renderErrorFor(err, res);
 	
 		if (!rsvp) {
 			var newRsvp = new db.Rsvp({
@@ -98,7 +98,7 @@ exports.rsvpPost = function(req, res) {
 			});
 			
 			newRsvp.save(function(err) {
-				if (err) renderErrorFor(err, res);
+				if (err) return renderErrorFor(err, res);
 				res.redirect('/rsvp/detail/' + newRsvp.rsvpId);
 			});
 			
@@ -124,8 +124,8 @@ exports.rsvpDetail = function(req, res) {
 	
 	rsvpRepo.getByRsvpId(req.params.id, function(err, rsvp) {
 	
-		if (err) renderErrorFor(err, res);
-		if (!rsvp) renderErrorFor('RSVP not found: ' + req.params.id, res);
+		if (err) return renderErrorFor(err, res);
+		if (!rsvp) return renderErrorFor('RSVP not found: ' + req.params.id, res);
 	
 		res.render('rsvp-detail', {
 			title: 'RSVP - Shea & Lindsey\'s Wedding',
@@ -139,8 +139,8 @@ exports.rsvpDetailPost = function(req, res) {
 
 	rsvpRepo.getByRsvpId(req.body.rsvpId, function(err, rsvp) {
 	
-		if (err) renderErrorFor(err, res);
-		if (!rsvp) renderErrorFor('RSVP not found: ' + req.params.id, res);
+		if (err) return renderErrorFor(err, res);
+		if (!rsvp) return renderErrorFor('RSVP not found: ' + req.params.id, res);
 	
 		rsvp.name = req.body.rsvpName;
 		rsvp.accept = userRSVPed('accept', req);
@@ -167,7 +167,7 @@ exports.rsvpDetailPost = function(req, res) {
 		
 		rsvp.save(function(err) {
 		
-			if (err) renderErrorFor(err, res);
+			if (err) return renderErrorFor(err, res);
 			
 			emailer.sendConfirmationFor(rsvp, function(err) {
 				// do nothing, treat this as fire and forget
@@ -181,7 +181,7 @@ exports.rsvpThanks = function(req, res) {
 
 	rsvpRepo.getByRsvpId(req.params.id, function(err, rsvp) {
 	
-		if (err) renderErrorFor(err, res);
+		if (err) return renderErrorFor(err, res);
 		
 		res.render('rsvp-thanks', {
 			title: 'Thanks for the RSVP - Shea & Lindsey\'s Wedding',
