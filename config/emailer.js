@@ -117,5 +117,9 @@ function buildConfirmationContent(rsvp) {
 
 function buildGuestList(rsvp) {
 
+	if (rsvp.guests.length == 0) {
+		return '';
+	}
+
 	return '<li>' + rsvp.guests.join("</li>\r\n<li>") + '</li>';
 }
