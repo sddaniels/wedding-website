@@ -1,6 +1,6 @@
 var async = require('async');
 var pollRepo = require('../repositories/poll-repository');
-
+var rsvpRepo = require('../repositories/rsvp-repository');
 
 exports.index = function(req, res) {
 
@@ -39,12 +39,16 @@ exports.dashboard = function(req, res) {
 
 	async.parallel(
 		{
-			totalCount: pollRepo.getTotalCount,
-			floridaCount: pollRepo.getFloridaCount,
-			iowaCount: pollRepo.getIowaCount,
-			notGoingCount: pollRepo.getNotGoingCount
+			pollTotalCount: pollRepo.getTotalCount,
+			pollFloridaCount: pollRepo.getFloridaCount,
+			pollIowaCount: pollRepo.getIowaCount,
+			pollNotGoingCount: pollRepo.getNotGoingCount,
+			rsvpTotalCount: rsvpRepo.getTotalCount,
+			rsvpAcceptGuestCount: rsvpRepo.getAcceptGuestCount,
+			rsvpIowaGuestCount: rsvpRepo.getIowaGuestCount,
+			rsvpDeclineGuestCount: rsvpRepo.getDeclineGuestCount
 		},
-		function(err, pollData) {
+		function(err, data) {
 		
 			if (err) renderErrorFor(err, res);
 		
@@ -52,7 +56,18 @@ exports.dashboard = function(req, res) {
 				title: 'Admin - Shea & Lindsey\'s Wedding',
 				layout: 'admin-layout',
 				user: req.user,
-				poll: pollData
+				poll: { 
+					totalCount: data.pollTotalCount,
+					floridaCount: data.pollFloridaCount,
+					iowaCount: data.pollIowaCount,
+					notGoingCount: data.pollNotGoingCount
+				},
+				rsvp: {
+					totalCount: data.rsvpTotalCount,
+					acceptGuestCount: data.rsvpAcceptGuestCount,
+					iowaGuestCount: data.rsvpIowaGuestCount,
+					declineGuestCount: data.rsvpDeclineGuestCount
+				}
 			});
 		}
 	);
