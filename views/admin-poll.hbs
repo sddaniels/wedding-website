@@ -9,25 +9,27 @@
 				<thead>
 					<tr>
 						<th>Time</th>
-						<th>Florida</th>
-						<th>Iowa</th>
-						<th>Not Going</th>
+						<th>Response</th>
 					</tr>
 				<thead>
 				<tbody>
 					{{#each pollResponses}}
 						<tr>
 							<td>
-								{{date}}
+								{{formatDateTime date}}
 							</td>
 							<td>
-								{{florida}}
-							</td>
-							<td>
-								{{iowa}}
-							</td>
-							<td>
-								{{notGoing}}
+								{{#if florida}}
+									Florida
+								{{/if}}
+								
+								{{#if iowa}}
+									Iowa
+								{{/if}}
+								
+								{{#if notGoing}}
+									Not Going
+								{{/if}}
 							</td>
 						</tr>
 					{{/each}}

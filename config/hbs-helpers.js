@@ -1,9 +1,13 @@
+var dateFormat = require('dateformat');
+
 module.exports = function(hbs) {
 
 	var blocks = {};
 
 	hbs.registerHelper('extend', function(name, context) {
+	
 		var block = blocks[name];
+		
 		if (!block) {
 			block = blocks[name] = [];
 		}
@@ -12,6 +16,7 @@ module.exports = function(hbs) {
 	});
 
 	hbs.registerHelper('block', function(name) {
+	
 		var val = (blocks[name] || []).join('\n');
 	
 		// clear the block
@@ -20,14 +25,22 @@ module.exports = function(hbs) {
 	});
 
 	hbs.registerHelper('year', function() {
+	
 		return new Date().getFullYear();
 	});
 
 	hbs.registerHelper('ifCond', function(v1, v2, options) {
-	  if(v1 === v2) {
-		return options.fn(this);
-	  }
-	  return options.inverse(this);
+	
+		if(v1 === v2) {
+			return options.fn(this);
+		}
+		
+		return options.inverse(this);
+	});
+	
+	hbs.registerHelper('formatDateTime', function(dateToFormat) {
+	
+		return dateFormat(dateToFormat, "m/d/yyyy h:MM TT");
 	});
 
 };
