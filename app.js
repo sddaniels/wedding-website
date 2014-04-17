@@ -50,6 +50,7 @@ app.get('/florida', indexController.florida);
 app.get('/iowa', indexController.iowa);
 app.get('/registry', indexController.registry);
 app.get('/photos', indexController.photos);
+app.get('/bachelorparty', indexController.bachelorparty);
 
 app.get('/rsvp', indexController.rsvp);
 app.post('/rsvp', indexController.rsvpPost);

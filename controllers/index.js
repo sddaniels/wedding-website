@@ -31,6 +31,13 @@ exports.pollPost = function(req, res) {
 	});
 };
 
+exports.bachelorparty = function(req, res) {
+
+	res.render('bachelorparty', {
+		title: 'Bachelor Party'
+	});
+};
+
 exports.florida = function(req, res) {
 
 	res.render('florida', { 
